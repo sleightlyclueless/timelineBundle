@@ -1,0 +1,9 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<?php foreach ($this->arrData['arrTimelineData'] as $currData): ?>
+    <?php var_dump($currData); ?>
+<?php endforeach; ?>
+
+<?php $this->endblock(); ?>

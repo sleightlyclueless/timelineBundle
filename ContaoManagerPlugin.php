@@ -8,7 +8,7 @@
  */
 
 // Namespace: Der eindeutige Pfad, der auf diese entsprechende PHP Datei zeigt, damit sie von anderen Orten aus per use statement eindeutig aufgerufen und oder referenziert werden kann. Diese Datei wird von der /src/TimelineBundle/composer.json aufgerufen, die wiederrum durch den /composer.json im root aufgerufen wurde.
-namespace ixtensa\TimelineBundle;
+namespace zill\TimelineBundle;
 
 // Um Bundles zu den Contao Core (Standard) Bundles hinzu zu nehmen, dafür gibt es die Contao Funktion "getBundles" vom "BundlePluginInterface". Dieses Interface verwenden wir also nun, indem wir die per Namespace registrierten Bundle "libraries" in diesem Sinne per use statements verwenden. Folgende 4 werden für die Registrierung verwendet:
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;

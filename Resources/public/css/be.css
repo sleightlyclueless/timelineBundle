@@ -1,0 +1,27 @@
+/* Verstecke die Zeilenüberschriften */
+#ctrl_timeline thead th {
+  display: none;
+}
+
+#ctrl_timeline tbody td.mcwUpdateFields {
+  display: block;
+  width: 99.9%;
+  clear: both;
+  margin-bottom: 10px;
+}
+
+#ctrl_timeline tbody tr td:first-child {
+  margin-top: 30px;
+}
+
+#ctrl_timeline tbody tr td:nth-last-child(2) {
+  margin-bottom: 30px;
+}
+
+#ctrl_timeline tbody td.mcwUpdateFields:first-child input {
+  width: 78%;
+}
+
+#ctrl_timeline tbody tr {
+  border-bottom: 1px solid #ccc;
+}
