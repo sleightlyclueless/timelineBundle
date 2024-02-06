@@ -1,0 +1,26 @@
+{
+	"name": "zill/timeline-bundle",
+    "type": "contao-bundle",
+	"description": "A quick extension of Contao, giving it a timeline content element in terms of my bachelors degree work in comparison to Hubspot.",
+    "keywords": ["contao", "timeline"],
+    "license": "LGPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Sebastian Zill",
+            "role": "developer",
+            "mail": "sebastian.zill@stud.h-da.de"
+		}
+	],
+	"require": {
+		"php": ">=7.1",
+		"contao/core-bundle": "^4.4"
+	},
+	"extra": {
+		"contao-manager-plugin": "zill\\TimelineBundle\\ContaoManagerPlugin"
+	},
+	"autoload": {
+		"psr-4": {
+			"zill\\TimelineBundle\\": ""
+		}
+	}
+}
