@@ -1,0 +1,357 @@
+/* #4361EE: #4361EE */
+
+/* Timeline (Wrapper) */
+/* --------------------------------------------------------------------- */
+
+.timeline {
+  position: relative;
+}
+.timeline-inner {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* Timeline Start-End (Bullets) */
+/* --------------------------------------------------------------------- */
+
+.timeline-trace > .timeline-fixpoint {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  margin-left: -8px;
+  background: #d3d3d3;
+}
+.timeline-inner.js .timeline-trace > .timeline-fixpoint:first-child {
+  background: #4361ee;
+}
+.timeline-trace > .timeline-fixpoint:first-child {
+  top: -8px;
+}
+.timeline-trace > .timeline-fixpoint:last-child {
+  bottom: -8px;
+}
+
+/* Timeline (Trace) */
+/* --------------------------------------------------------------------- */
+
+.timeline-trace {
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  width: 6px;
+  background: #d3d3d3;
+  top: 0px;
+  left: 50%;
+  margin-left: -3px;
+}
+.timeline-trace .timeline-progress {
+  height: 0;
+  background: #4361ee;
+  transition: height 150ms ease 0ms;
+}
+
+/* Timeline Circle (Style) */
+/* --------------------------------------------------------------------- */
+
+.timeline .circle,
+.timeline .circle-icon {
+  border: 6px solid #d3d3d3;
+  background: #d3d3d3;
+  transition: background 300ms linear 150ms, border 300ms linear 150ms;
+  margin-top: 18px;
+}
+/* JS Progress Active State */
+.timeline-item.focus .circle,
+.timeline-item.focus .circle-icon,
+.timeline-item.above .circle,
+.timeline-item.above .circle-icon {
+  border-color: #4361ee;
+  background: #4361ee;
+}
+.timeline .circle svg,
+.timeline .circle i,
+.timeline .circle-icon svg,
+.timeline .circle-icon i {
+  width: 60%;
+  height: 60%;
+  margin: 20%;
+}
+.timeline .circle-icon svg,
+.timeline .circle-icon i {
+  color: #fff;
+  fill: #fff;
+}
+.timeline .circle {
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+}
+.timeline .circle-icon {
+  border-radius: 28px;
+  width: 56px;
+  height: 56px;
+}
+
+/* Timeline Circle (Position) */
+/* --------------------------------------------------------------------- */
+
+.timeline .circle {
+  position: absolute;
+  top: calc(32 - 6) px;
+}
+.timeline .circle-icon {
+  position: absolute;
+  top: calc(16 - 6) px;
+}
+.timeline-item.left .circle {
+  right: -12px;
+}
+.timeline-item.left .circle-icon {
+  right: -28px;
+}
+.timeline-item.right .circle {
+  left: -12px;
+}
+.timeline-item.right .circle-icon {
+  left: -28px;
+}
+
+/* Timeline (Content) */
+/* --------------------------------------------------------------------- */
+
+.timeline .timeline-box {
+  border-radius: calc(16 / 4) px;
+  color: #000;
+  background: #d3d3d3;
+  padding: 10px 16px 20px;
+}
+.timeline .timeline-item.left {
+  padding-right: calc(16 * 3) px;
+}
+.timeline .timeline-item.right {
+  padding-left: calc(16 * 3) px;
+}
+.timeline .timeline-box > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline (Caret) */
+/* --------------------------------------------------------------------- */
+
+.timeline-item.left .timeline-box:before,
+.timeline-item.left .timeline-box:after,
+.timeline-item.right .timeline-box:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.timeline-item.right .timeline-box:before,
+.timeline-item.left .timeline-box:after {
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-right: 10px solid #d3d3d3;
+  left: calc(16 * 3 - 10) px;
+}
+.timeline-item.left .timeline-box:before {
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-left: 10px solid #d3d3d3;
+  right: calc(16 * 3 - 10) px;
+}
+
+/* Timeline Caret (Position) */
+/* --------------------------------------------------------------------- */
+
+.timeline-box:before,
+.timeline-box:after {
+  top: calc(12 + 6 - 5 + 16) px;
+}
+.timeline-box.item-icon:before,
+.timeline-box.item-icon:after {
+  top: calc(28 + 6 - 5) px;
+}
+
+/* Timeline (Custom) */
+/*--------------------------------------------------------------------------*/
+
+.timeline:not(.default) time,
+.timeline:not(.default) .timeline-fixpoint {
+  display: none;
+}
+.timeline:not(.default) .timeline-box {
+  background: none;
+}
+.timeline:not(.default) ol {
+  counter-reset: timeline;
+  list-style-type: none;
+}
+.timeline:not(.default) .circle {
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  background: transparent linear-gradient(180deg, #22a1e0 0%, #2996cc 100%) 0%
+    0% no-repeat padding-box;
+  box-shadow: 10px 10px 30px #66667840;
+  border: none;
+  border-radius: 100%;
+  z-index: 3;
+}
+.timeline:not(.default) .circle::before {
+  counter-increment: timeline;
+  content: counters(timeline, ".") ".";
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 1px);
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+.timeline:not(.default) .timeline-item.last::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  top: 50px;
+  width: 6px;
+  height: 100%;
+  z-index: 2;
+  left: -3px;
+  right: unset;
+}
+.timeline .timeline-item h3 {
+  margin-top: 0;
+}
+.timeline figure {
+  overflow: hidden;
+  padding-bottom: 30px;
+}
+.timeline img {
+  width: 100%;
+  height: auto;
+}
+.timeline .circle-icon {
+  top: -25px;
+  background: #4361ee;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border: none;
+  z-index: 3;
+  box-shadow: 10px 10px 30px #66667840;
+}
+.timeline svg {
+  fill: #4361ee;
+  color: #fff;
+}
+
+/* Vertical Timeline */
+.vertical.timeline .timeline-item.left .timeline-box::before,
+.vertical.timeline .timeline-item.right .timeline-box::before,
+.vertical.timeline .timeline-item.left .timeline-box::after,
+.vertical.timeline .timeline-item.right .timeline-box::after {
+  border: none;
+  border-top: 3px solid #d3d3d3;
+  width: 60px;
+  top: 40px;
+}
+.vertical.timeline .timeline-item.left .timeline-box::before {
+  right: 25px;
+}
+.vertical.timeline .timeline-item.right .timeline-box::before {
+  left: 25px;
+}
+.vertical.timeline .circle-icon {
+  top: 25px;
+}
+.vertical.timeline .timeline-item.left .circle-icon {
+  right: -25px;
+}
+.vertical.timeline .timeline-item.right .circle-icon {
+  left: -25px;
+}
+.vertical.timeline .timeline-trace {
+  background: #d3d3d3;
+  top: 50px;
+  margin-left: -1.5px;
+  width: 3px;
+  height: calc(100% - 50px - 16px);
+  z-index: 1;
+}
+.vertical.timeline .timeline-item.left .circle {
+  right: -25px;
+}
+.vertical.timeline .timeline-item.right .circle {
+  left: -25px;
+}
+.vertical.timeline .timeline-item.left {
+  padding-right: 112px;
+  text-align: right;
+}
+.vertical.timeline .timeline-item.right {
+  padding-left: 112px;
+}
+
+@media only screen and (max-width: 767px) {
+  .timeline .circle-icon {
+    top: 25px;
+  }
+  .timeline .timeline-item {
+    padding-left: 48px;
+  }
+  .timeline .timeline-item .timeline-box::before,
+  .timeline .timeline-item .timeline-box::after {
+    display: none;
+  }
+  .timeline .timeline-box {
+    padding: 16px 0 20px;
+  }
+  .timeline {
+    margin-left: 28px;
+  }
+  .timeline-trace {
+    right: auto;
+    left: 0;
+  }
+  .timeline .circle {
+    margin-left: -calc(12 - 3) px;
+  }
+  .timeline .circle-icon {
+    margin-left: -calc(28 - 3) px;
+  }
+  .timeline-item.left .circle,
+  .timeline-item.left .circle-icon,
+  .timeline-item.right .circle,
+  .timeline-item.right .circle-icon {
+    right: auto;
+    left: -25px;
+  }
+  .timeline .timeline-item {
+    padding-top: 16px;
+  }
+  .timeline .timeline-item.left,
+  .timeline .timeline-item.right {
+    padding-right: 16px;
+    padding-left: calc(16 * 3) px;
+  }
+  .timeline-item.left .timeline-box:before {
+    display: none;
+  }
+
+  .vertical.timeline .timeline-item.left {
+    padding-right: unset;
+    text-align: left;
+  }
+  .vertical.timeline .timeline-item.right {
+    padding-left: 48px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .timeline-item.left .timeline-box:after {
+    display: none;
+  }
+}

@@ -8,3 +8,5 @@
  */
 
 $GLOBALS['TL_LANG']['CTE']['timeline'] = ['Zeitstrahl'];
+$GLOBALS['ZI_T']['MSC']['wildcard_header'] = '## Zeitstrahl ##';
+$GLOBALS['ZI_T']['MSC']['template_title_all'] = 'Zeitstrahl Element';

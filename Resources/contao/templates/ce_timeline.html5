@@ -2,8 +2,58 @@
 
 <?php $this->block('content'); ?>
 
-<?php foreach ($this->arrData['arrTimelineData'] as $currData): ?>
-    <?php var_dump($currData); ?>
-<?php endforeach; ?>
+
+<div class="timeline vertical">
+  <div class="timeline-inner">
+	<!-- Trace structure -->
+    <div class="timeline-trace" aria-hidden="true">
+      <div class="timeline-fixpoint"></div>
+      <div class="timeline-progress"></div>
+      <div class="timeline-fixpoint"></div>
+    </div>
+
+	<!-- Alternating timeline content -->
+    <ol class="row no-list no-gutters">
+      <?php
+      $counter = 0;
+      foreach ($this->arrData['arrTimelineData'] as $currData):
+        $positionClass = ($counter % 2 === 0) ? '' : 'offset-md-6';
+        $sideClass = ($counter % 2 === 0) ? 'left' : 'right';
+      ?>
+
+        <li class="col-sm-12 col-md-6 <?php echo $positionClass; ?>">
+          <div class="timeline-item <?php echo $sideClass; ?> first intersecting focus" data-observer-index="0">
+            <div class="circle"></div>
+            <div class="timeline-box item-icon">
+              <div class="content">
+                <!-- Headline -->
+                <?php if (!empty($currData['timeline_headline']['value'])): ?>
+                    <<?= $currData['timeline_headline']['unit']; ?>><?php echo $currData['timeline_headline']['value']; ?></<?= $currData['timeline_headline']['unit']; ?>>
+                <?php endif; ?>
+
+                <!-- Image -->
+                <?php if (!empty($currData['arrPicture'])): ?>
+                    <?php $this->insert('image', (array)($currData['arrPicture'][0])); ?>
+                <?php endif; ?>
+
+                <!-- Content -->
+                <div class="richtext">
+                  <?= $currData['timeline_content']; ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      <?php
+        $counter++;
+        endforeach;
+      ?>
+    </ol>
+  </div>
+</div>
+
+
+
 
 <?php $this->endblock(); ?>

@@ -10,6 +10,9 @@
 // Wir definieren hier nun den Namespace zu dieser Datei – wird in der /TimelineBundle/Resources/contao/config/config.php verwendet um auf diese Class Datei für die CTE Erweiterung per Namespace zu verweisen.
 namespace zill\TimelineBundle\Classes;
 
+// Wir holen uns externe Helperclass Funktionen unter /EmployeeBundle/Helper/Helperclass.php per Namespace. Diese werden immer nach dem Schema HelperClass::Funktionsname per Namespace dazu genommen. Die einzelnen Funktionen sind in der Helperclass Datei näher beschrieben und dienen dem zentralen Verwenden von Funktionen und dem gleichzeitigen Auslagern von Code zur modularen und besseren Lesbarkeit.
+use zill\TimelineBundle\Helper\HelperClass;
+
 // Es handelt sich hierbei um ein Inhalts- Content Element für Artikel (CTE), weswegen wir hier die \ContentElement Klasse von Contao erweitern – wurde in der /TimelineBundle/Resources/contao/config/config.php so definiert und wird nun hier weiter geführt.
 class Timeline extends \ContentElement
 {
@@ -29,10 +32,10 @@ class Timeline extends \ContentElement
             $this->Template             = new \BackendTemplate($this->strTemplate);
 
 			// Die wildcard im Template ist der untere Teil des Elements. Dort schreiben wir "### Zeitstrahl ###" aus der languages Datei default.php hin
-            $this->Template->wildcard   = $GLOBALS['IX_EB']['MSC']['wildcard_header'];
+            $this->Template->wildcard   = $GLOBALS['ZI_T']['MSC']['wildcard_header'];
 
             // Jetzt brauchen wir noch den Title und evtl. sonstige Angaben für die fertige Wildcard. Diese varriieren je nach dem welcher Typ der Zeitstrahl-Ausgabe gewählt wurde (Einzeln, Individuelle Checkboxen, nach Abteilungen, Alle). Für diese Fälle müssen wir per switch-case unterschiedliche Abfragen der Fälle für die Wildcard Titles erstellen.
-            $this->Template->title = $GLOBALS['IX_EB']['MSC']['template_title_all'];
+            $this->Template->title = $GLOBALS['ZI_T']['MSC']['template_title_all'];
 
 			// Backend Template parsen und entsprechend weitergeben
             return $this->Template->parse();
@@ -46,6 +49,8 @@ class Timeline extends \ContentElement
 	// Die compile Funktion erzeugt die Ausgabe für das Frontend, bzw. gibt die Werte an das obig definierte standard Template weiter und dieses gibt es dann im Frontend weiter aus.
     protected function compile()
     {
+        $helper = new HelperClass();
+        $arrData = $helper->prepareArrayDataForTemplate($this->arrData['timeline']);
         $this->Template->arrTimelineData = $arrData;
     }
 }

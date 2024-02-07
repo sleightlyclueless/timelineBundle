@@ -15,3 +15,8 @@
  if (TL_MODE == 'BE') {
     $GLOBALS['TL_CSS'][] = 'bundles/timeline/css/be.css';
  }
+
+ if (TL_MODE == 'FE') {
+    $GLOBALS['TL_CSS'][] = 'bundles/timeline/css/timeline.css';
+    $GLOBALS['TL_CSS'][] = 'bundles/timeline/css/bootstrap.css';
+ }
